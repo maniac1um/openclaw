@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻发布系统</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .news-item {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .news-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+        .news-meta {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        .news-content {
+            white-space: pre-wrap;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #95a5a6;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>最新新闻</h1>
+    {% if news %}
+        {% for item in news %}
+        <div class="news-item">
+            <div class="news-title">{{ item.title }}</div>
+            <div class="news-meta">
+                发布于 {{ item.date }} | 作者: {{ item.author }}
+            </div>
+            <div class="news-content">{{ item.content }}</div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>暂无新闻，请发布新内容。</p>
+    {% endif %}
+    <div class="footer">
+        &copy; 2026 自动化新闻发布系统 | 由 OpenClaw 驱动
+    </div>
+</body>
+</html> 
