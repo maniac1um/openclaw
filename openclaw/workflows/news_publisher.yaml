@@ -1,0 +1,9 @@
+- name: call_local_server
+  tool: http_request
+  params:
+    url: "http://localhost:5000/webhook"
+    method: POST
+    headers:
+      Content-Type: application/json
+    body:
+      news_text: "{{user_message}}"
