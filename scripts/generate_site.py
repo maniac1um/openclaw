@@ -3,9 +3,6 @@ import json
 from jinja2 import Environment, FileSystemLoader
 
 def regenerate_website():
-    """
-    根据 data/news/*.json 生成 web/index.html
-    """
     data_dir = 'data/news'
     web_dir = 'web'
     template_path = 'src/templates/index.html'
@@ -35,4 +32,4 @@ def regenerate_website():
         f.write(rendered)
 
 if __name__ == '__main__':
-    regenerate_website()    
+    regenerate_website()
