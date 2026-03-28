@@ -13,4 +13,7 @@ app.register_blueprint(website_bp, url_prefix='')
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     debug = os.getenv('DEBUG', 'False').lower() == 'true'
+    print("Registered routes:")
+    for rule in app.url_map.iter_rules():
+        print(rule)
     app.run(host='0.0.0.0', port=port, debug=debug)
