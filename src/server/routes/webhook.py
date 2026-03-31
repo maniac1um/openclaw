@@ -44,11 +44,20 @@ def handle_webhook():
     # 5. Git 提交并推送
     commit_msg = f"发布新闻：{news_data['title']}"
     result = git.commit_and_push(commit_msg, patterns=['web/'])
-    if not result['success']:
-        return jsonify({'error': result['error']}), 500
-
-    return jsonify({
+    
+    # 构建响应
+    response_data = {
         'status': 'ok',
-        'commit': result['commit_hash'],
         'news': news_data
-    }), 200
+    }
+    
+    # 添加Git操作结果
+    if result.get('commit_hash'):
+        response_data['commit'] = result['commit_hash']
+    
+    if not result['success']:
+        # Git操作失败，但新闻已保存，返回警告而不是错误
+        response_data['git_warning'] = result['error']
+        response_data['status'] = 'warning'
+    
+    return jsonify(response_data), 200
