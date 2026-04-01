@@ -13,7 +13,7 @@ def sanitize_input(raw_text: str) -> str:
     # \x7f: 删除字符
     cleaned = re.sub(r'[\x00-\x08\x0b-\x0c\x0e-\x1f\x7f]', '', raw_text)
 
-    # 检测并移除常见注入模式（可根据需要扩展）
+    # 检测并移除常见注入模式
     injection_patterns = [
         (r'忽略.*指令', '[REDACTED]'),
         (r'ignore.*previous.*instruction', '[REDACTED]'),
@@ -37,7 +37,7 @@ def extract_news(text: str) -> Dict[str, str]:
     从文本中提取新闻信息（标题、日期、作者、正文）。
     简单有效的解析器，支持标准格式。
     """
-    # 先清洗输入
+    # 清洗输入
     cleaned_text = sanitize_input(text)
     
     # 获取所有行并去除空白
