@@ -43,7 +43,7 @@ def handle_webhook():
 
     # 5. Git 提交并推送
     commit_msg = f"发布新闻：{news_data['title']}"
-    result = git.commit_and_push(commit_msg, patterns=['web/'])
+    result = git.commit_and_push(commit_msg, patterns=['web/'], exclude_patterns=['web/index.html'])
     
     # 构建响应
     response_data = {
